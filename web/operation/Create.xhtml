@@ -14,18 +14,22 @@
                     <p:panelGrid columns="2" rendered="#{operationController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateOperationLabel_montant}" for="montant" />
                         <p:inputText id="montant" value="#{operationController.selected.montant}" title="#{bundle.CreateOperationTitle_montant}" />
+
                         <p:outputLabel value="#{bundle.CreateOperationLabel_dateOperation}" for="dateOperation" />
                         <p:calendar id="dateOperation" pattern="MM/dd/yyyy" value="#{operationController.selected.dateOperation}" title="#{bundle.EditOperationTitle_dateOperation}"  showOn="button"/>
+
                         <p:outputLabel value="#{bundle.CreateOperationLabel_type}" for="type" />
-                        <p:inputText id="type" value="#{operationController.selected.type}" title="#{bundle.CreateOperationTitle_type}" />
+                        <p:selectOneMenu id="type" value="#{operationController.selected.type}"  >
+                            <f:selectItem itemValue="1" itemLabel="Credit"/>
+                            <f:selectItem itemValue="2" itemLabel="Debit"/>
+                        </p:selectOneMenu>
+
                         <p:outputLabel value="#{bundle.CreateOperationLabel_compte}" for="compte" />
                         <p:selectOneMenu id="compte" value="#{operationController.selected.compte}" >
                             <f:selectItems value="#{compteController.itemsAvailableSelectOne}"
                                            var="compteItem"
-                                           itemValue="#{compteItem}"/>
+                                           itemValue="#{compteItem}" itemLabel="#{compteItem.id}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateOperationLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{operationController.selected.id}" title="#{bundle.CreateOperationTitle_id}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{operationController.create}" value="#{bundle.Save}" update="display,:OperationListForm:datalist,:growl" oncomplete="handleSubmit(args,'OperationCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="OperationCreateDialog.hide()"/>

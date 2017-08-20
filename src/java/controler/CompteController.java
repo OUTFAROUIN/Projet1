@@ -75,9 +75,7 @@ public class CompteController implements Serializable {
     }
 
     public List<Compte> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findAll();
         return items;
     }
 

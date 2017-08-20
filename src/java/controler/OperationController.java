@@ -85,8 +85,8 @@ public class OperationController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                if (persistAction == PersistAction.CREATE) {
+                    getFacade().save(selected);
                 } else {
                     getFacade().remove(selected);
                 }

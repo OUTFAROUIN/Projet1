@@ -27,7 +27,7 @@ public class Operation implements Serializable {
     private Long id;
     private Double montant;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateOperation;
+    private Date dateOperation= new Date();
     private int type;
     @ManyToOne
     private Compte compte;
